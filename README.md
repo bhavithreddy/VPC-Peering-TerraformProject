@@ -17,41 +17,8 @@ A mini-project that provisions two isolated AWS VPCs in **different regions** (`
 
 ## 🏗️ Architecture
 
-```
-                         ┌───────────────────────────────────────────┐
-                         │              AWS Account                  │
-                         └───────────────────────────────────────────┘
-        ┌──────────────────────────────┐   ┌──────────────────────────────┐
-        │   Region: us-east-1 (Primary)│   │  Region: us-west-2 (Secondary)│
-        │                              │   │                              │
-        │  ┌────────────────────────┐  │   │  ┌────────────────────────┐  │
-        │  │   VPC-A (10.0.0.0/16)  │  │   │  │   VPC-B (10.1.0.0/16)  │  │
-        │  │                        │  │   │  │                        │  │
-        │  │  ┌──────────────────┐  │  │   │  │  ┌──────────────────┐  │  │
-        │  │  │ Public Subnet A  │  │  │   │  │  │ Public Subnet B  │  │  │
-        │  │  │                  │  │  │   │  │  │                  │  │  │
-        │  │  │  ┌────────────┐  │  │  │   │  │  │  ┌────────────┐  │  │  │
-        │  │  │  │  EC2 (A)   │  │  │  │   │  │  │  │  EC2 (B)   │  │  │  │
-        │  │  │  └─────┬──────┘  │  │  │   │  │  │  └─────┬──────┘  │  │  │
-        │  │  └────────┼─────────┘  │  │   │  │  └────────┼─────────┘  │  │
-        │  │           │            │  │   │  │           │            │  │
-        │  │     Route Table A      │  │   │  │     Route Table B      │  │
-        │  │   0.0.0.0/0  → IGW-A   │  │   │  │   0.0.0.0/0  → IGW-B   │  │
-        │  │   10.1.0.0/16→ PCX ────┼──┼───┼──┼──→ 10.0.0.0/16 → PCX   │  │
-        │  └───────────┬────────────┘  │   │  └───────────┬────────────┘  │
-        │              │                │   │              │                │
-        │        ┌─────┴─────┐          │   │        ┌─────┴─────┐          │
-        │        │  IGW-A    │          │   │        │  IGW-B    │          │
-        │        └───────────┘          │   │        └───────────┘          │
-        └──────────────┬─────────────────┘   └──────────────┬─────────────────┘
-                        │                                    │
-                        │        VPC Peering Connection       │
-                        └───────────── (PCX, cross-region) ───┘
-                                  Private IP traffic only
-                                  (no public internet hop)
+![Uploading image.png…]()
 
-  Internet ⇄ IGW-A/IGW-B  → SSH admin access (port 22, from anywhere)
-  EC2(A) ⇄ EC2(B) via PCX → ICMP (ping) + all TCP, VPC-CIDR to VPC-CIDR only
 ```
 
 **Key architectural decisions:**
