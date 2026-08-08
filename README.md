@@ -17,7 +17,8 @@ A mini-project that provisions two isolated AWS VPCs in **different regions** (`
 
 ## 🏗️ Architecture
 
-![Uploading image.png…]()
+<img width="2720" height="1880" alt="cross_region_vpc_peering_architecture" src="https://github.com/user-attachments/assets/8c0df0fd-e132-4163-89e6-8c26e4c35830" />
+
 
 ```
 
