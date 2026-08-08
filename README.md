@@ -2,8 +2,6 @@
 
 A mini-project that provisions two isolated AWS VPCs in **different regions** (`us-east-1` and `us-west-2`) and connects them via **cross-region VPC Peering**, enabling private, low-latency communication between EC2 instances using internal IP addresses — without traffic ever touching the public internet.
 
-> Based on Day 15 of the `#30daysofawsterraform` challenge.
-> Reference: [YouTube walkthrough](https://youtu.be/WGt000THDmQ) · [Original source project](https://github.com/Nandan3/Terraform-Full-Course-Aws/tree/main/lessons/day15)
 
 ---
 
